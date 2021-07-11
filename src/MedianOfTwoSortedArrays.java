@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 /*
@@ -14,26 +13,21 @@ class MedianOfTwoSortedArrays {
     //Returns the median in O(n) time using O(n) space
     public static double returnMedian(int[] array1,int[] array2){
         int[] holdSortedValues = new int[array1.length+array2.length];
-        System.out.println("holdSorted Len:" + holdSortedValues.length);
         int array1Pointer = 0;
         int array2Pointer = 0;
         for(int x=0;x<holdSortedValues.length;x++){
             if(array1Pointer >= array1.length){
-                System.out.println("Value added:" + array2[array2Pointer]);
                 holdSortedValues[x] = array2[array2Pointer];
                 array2Pointer++;
             }else if(array2Pointer >= array2.length){
-                System.out.println("Value added:" + array1[array1Pointer]);
                 holdSortedValues[x] = array1[array1Pointer];
                 array1Pointer++;
 
             }else if(array1[array1Pointer] < array2[array2Pointer]){
-                System.out.println("Value added:" + array1[array1Pointer]);
                 holdSortedValues[x] = array1[array1Pointer];
                 array1Pointer++;
 
-            }else /*if(array2[array2Pointer] < array1[array1Pointer])*/{
-                System.out.println("Value added:" + array2[array2Pointer]);
+            }else {
                 holdSortedValues[x] = array2[array2Pointer];
                 array2Pointer++;
             }
@@ -41,7 +35,7 @@ class MedianOfTwoSortedArrays {
         }
         System.out.println(Arrays.toString(holdSortedValues));
         if(holdSortedValues.length % 2 == 0){
-            return (holdSortedValues[(holdSortedValues.length-2)/2] + holdSortedValues[(holdSortedValues.length-2)/2 + 1])/2;
+            return (double)(holdSortedValues[(holdSortedValues.length-2)/2] + holdSortedValues[(holdSortedValues.length-2)/2 + 1])/2;
         }else{
             return holdSortedValues[(holdSortedValues.length-1)/2];
         }
